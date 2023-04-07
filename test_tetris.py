@@ -41,6 +41,27 @@ class TestTetris(unittest.TestCase):
         self.assertEqual(self.tetris.block_x, initial_x)
         self.assertIsNotNone(self.tetris.block)
 
+    def test_rotation(self):
+        tetris = Tetris()
+        # Test rotating the block clockwise
+        tetris.block = [['*', ' ', ' '],
+                        ['*', '*', '*']]
+        tetris.block_x = 4
+        tetris.block_y = 4
+        tetris.rotate_block_clockwise()
+        assert tetris.block == [['*', '*'],
+                                ['*', ' '],
+                                ['*', ' ']]
+        # Test rotating the block anticlockwise
+        tetris.block = [['*', '*', '*'],
+                        ['*', ' ', ' ']]
+        tetris.block_x = 0
+        tetris.block_y = 0
+        tetris.rotate_block_anticlockwise()
+        assert tetris.block == [['*', ' '],
+                                ['*', ' '],
+                                ['*', '*']]
+
 
 if __name__ == '__main__':
     unittest.main()
