@@ -31,6 +31,11 @@ class Tetris:
         else:
             self.freeze_block()
 
+    def drop_block(self):
+        while not self.check_collision(self.block_x, self.block_y + 1, self.block):
+            self.block_y += 1
+        self.freeze_block()
+
     def move_block_left(self):
         if not self.check_collision(self.block_x - 1, self.block_y, self.block):
             self.block_x -= 1
@@ -88,6 +93,8 @@ class Tetris:
                 self.rotate_block_clockwise()
             elif command == 's':
                 self.rotate_block_anticlockwise()
+            elif command == 'z':
+                self.drop_block()
             else:
                 print('invalid input')
 
